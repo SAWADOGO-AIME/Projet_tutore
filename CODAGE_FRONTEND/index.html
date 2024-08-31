@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BC_UNB</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <!-- Navigation Menu -->
+        <nav class="nav">
+            <ul class="menu">
+                <li><a href="index.html"><b>Accueil</b></a></li>
+                <li><a href="salles.html"><b>Salles</b></a></li>
+                <li><a href="reservation.html"><b>Réservations</b></a></li>
+                <li><a href="#"><b>Contacts</b></a></li>
+            </ul>
+        </nav>
+        <div class="connexion">
+            <button class="ConnexionButton"><a href="connexion.html">Connexion</a></button>
+        </div>
+        <!-- Toggle Menu for Small Screens -->
+        <div class="toggle_menu">
+            
+        </div>
+    </header>
+    <!-- SearchBar Section -->
+    <div class="SearchBar">
+        <!-- Search Site -->
+        <input class="SearchInputSite" type="text" placeholder="Rechercher">
+        <button class="searchButtonSite"><img src="cle_recherche.png" alt="Search"></button>
+        
+        </div>
+    <!--page design-->
+    <div class="batiment">
+        <div class="text">
+            <h1>Bienvenue sur la plateforme</h1>
+            <h2><b>Gestion des salles dans UNB</b></h2>
+            <div class="search">
+                <p>Vous recherchez une salle ?</p>
+                <a href="salles.html" class="link">→</a>
+            </div>
+        </div>
+        <div class="imagesection">
+            <img src="UNB.jpg" alt="recherche salle" class="image">
+        </div>
+    </div>
+    <div class="div_text">
+        <h3>Faites vos réservations de salles en un clic !</h3>
+    </div>
+    <div class="container">
+        <h1>Salles disponibles</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Salle(site)</th>
+                    <th>Actions rapides</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Amphi A(<span class="site">INSSA</span>) <span class="status">Disponible</span></td>
+                    <td>
+                        <button class="details"><a href="">Détails</a></button>
+                        <button class="reservation"><a href="reservation_rapide.html">Réservation rapide</a></button>                        </td>
+                </tr>
+                <tr>
+                    <td>Amphi RTG(<span class="site">INSSA</span>) <span class="status">Disponible</span></td>
+                    <td>
+                        <button class="details"><a href="">Détails</a></button>
+                        <button class="reservation"><a href="reservation_rapide.html">Réservation rapide</a></button>                        </td>
+                </tr>
+                <tr>
+                    <td>Bloc Pédagogique(<span class="site">Site du 22</span>) <span class="status">Disponible</span></td>
+                    <td>
+                        <button class="details"><a href="detail_bloc_pedagogique.html">Détails</a></button>
+                        <button class="reservation"><a href="reservation_rapide.html">Réservation rapide</a></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="#" class="view-all">Voir tout...</a>
+    </div>
+    <div class="grid-container">
+        <div class="room-card active">
+            <div class="card-header">
+                <img src="icon.png" alt="icon" class="icon">
+                <h2>Pavillon A</h2>
+            </div>
+            <div class="card-content">
+                <p>Site: INSSA</p>
+                <p>Heure de début: 08h</p>
+                <p>Heure de fin: 12h</p>
+                <button class="liberate-button">Libérer</button>
+            </div>
+        </div>
+        <div class="room-card">
+            <div class="card-header">
+                <img src="icon.png" alt="icon" class="icon">
+                <h2>Pavillon B</h2>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <div class="card-header">
+                <img src="icon.png" alt="icon" class="icon">
+                <h2>Amphi II</h2>
+            </div>
+            <div class="card-content">
+                <p>Découvrez nos autres services...</p>
+            </div>
+        </div>
+
+        <div class="room-card">
+            <div class="card-header">
+                <img src="icon.png" alt="icon" class="icon">
+                <h2>Bloc pédagogique</h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript for Toggle Menu
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleMenu = document.querySelector(".toggle_menu");
+    const navMenu = document.querySelector(".nav");
+
+    toggleMenu.addEventListener("click", function() {
+        navMenu.classList.toggle("active");
+    });
+});
+
+    </script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h4>Université Nazi Boni</h4>
+            <p>Bobo Dioulasso, Burkina Faso</p>
+            <p>Email: upb@bf.edu</p>
+            <p>Téléphone: +226 xxxxxxxx</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>Liens rapides</h4>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="salles.html">Salles</a></li>
+                <li><a href="reservation.html">Mes réservations</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Suivez-nous</h4>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4>Informations légales</h4>
+            <ul>
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Politique de confidentialité</a></li>
+                <li><a href="#">Conditions d'utilisation</a></li>
+            </ul>
+        </div> 
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Université Nazi Boni. Tous droits réservés.</p>
+    </div>
+</footer>
+</body>
+
+</html>
