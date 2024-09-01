@@ -255,7 +255,197 @@ header .logo img {
     margin-top: 10px;
     width: 100%;
 }
- 
+
+/*ACTUALITES*/
+
+.actualites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.card {
+    background-color: white;
+    padding: 10px;
+    border: 2px solid #00a89e;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.grande-card {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+}
+
+.petite-card {
+    grid-column: 3 / 4;
+    grid-row: span 1;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #333;
+    font-size: 16px;
+}
+
+.all-news-button {
+    margin-top: 20px;
+    background-color: #00a89e;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+/* infos  !!!!!!!!!!!!*/
+
+/* Newsletter Section */
+.newsletter-section {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+    background-image: url('background-pattern.png'); /* Pattern background */
+    background-size: cover;
+}
+
+.newsletter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newsletter-content {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-content img {
+    max-width: 150px;
+    margin-right: 20px;
+}
+
+.newsletter-text h2 {
+    color: #0077b5;
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.newsletter-text p {
+    color: #333;
+    margin: 0 0 20px;
+}
+
+.newsletter-form {
+    display: flex;
+}
+
+.newsletter-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex: 1;
+}
+
+.newsletter-form button {
+    padding: 10px 20px;
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #0077b5;
+}
+
+/* Info Boxes Section */
+.info-section {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.info-section h3 {
+    color: #0077b5;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.info-section p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.info-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.info-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 300px;
+}
+
+.info-box i {
+    font-size: 48px;
+    color: #0077b5;
+    margin-bottom: 10px;
+}
+
+.info-box h4 {
+    color: #333;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
 /* Responsive Menu */
 @media (max-width: 768px) {
     .toggle_menu {
