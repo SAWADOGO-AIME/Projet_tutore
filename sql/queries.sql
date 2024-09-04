@@ -12,6 +12,9 @@ INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('
 INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('Amphi B',1000,'DISPONIBLE','INSSA');
 INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('Amphi RTG',1000,'DISPONIBLE','INSSA');
 INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('Bloc Pédagogique',150,'DISPONIBLE','SITE DU 22');
+INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('Classe A',50,'DISPONIBLE','CENTRE DE CALCUL');
+INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('Classe B',50,'DISPONIBLE','CENTRE DE CALCUL');
+INSERT INTO salle(nom_salle,nombre_places,salle_disponible,emplacement) VALUES('Classe D',50,'DISPONIBLE','CENTRE DE CALCUL');
 
 CREATE TABLE utilisateur(
     id_utilisateur INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
