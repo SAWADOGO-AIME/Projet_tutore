@@ -76,7 +76,7 @@ function seConnecter(PDO &$connexion) : bool{
         try {
             $entree = $_GET['barre_rechercher_salle'];
             $entree = filter_var($entree, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $requete = "SELECT *FROM salle WHERE nom_salle LIKE '%" .$entree. "%' ";
+            $requete = "SELECT * FROM salle WHERE nom_salle LIKE '%" .$entree. "%' ";
             $preparation = $connexion->prepare($requete);
             $preparation->execute();
             return $preparation->fetchAll();

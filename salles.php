@@ -1,15 +1,23 @@
 <?php
-$tableaufetch = null;
+$tableaufetchsite = null;
+$tableaufetchsalle = null;
+$rechercheSalleActiver = false;
+$rechercheSiteActiver = false;
 require_once 'connexion_base_Donnee.php';
 require_once 'functions.php';
+echo 'Halllo';
+toheaven($_GET);
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site']) || isset($_GET['barre_rechercher_salle'])) {
     try {
+        
         if (isset($_GET['barre_rechercher_site'])) {
-            $tableaufetch = getSites($connexion);
+            $tableaufetchsite = getSites($connexion);
+            $rechercheSiteActiver = true;
         }
         if (isset($_GET['barre_rechercher_salle'])) {
-            $tableaufetch = getSalles($connexion);
-            toheaven($tableaufetch);
+            $tableaufetchsalle = getSalles($connexion);
+            $rechercheSalleActiverteActiver = true;
+            toheaven($tableaufetchsalle);
         }
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
@@ -58,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                 else {
                     $resultat=getSites($connexion);
                 }
-                if (isset($_GET['barre_rechercher_site']) || $tableaufetch<>null) {
-                    foreach ($tableaufetch as $colonne) {
+                if (isset($_GET['barre_rechercher_site']) || $tableaufetchsite<>null) {
+                    foreach ($tableaufetchsite as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
                         echo htmlspecialchars($colonne['nom_salle']);
@@ -102,16 +110,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                     $resultat=getSalles($connexion);
                 }
 
-                if (isset($_GET['barre_rechercher_salle']) && $tableaufetch<>null) {
-                    foreach ($tableaufetch as $resultat) {
+                if (isset($_GET['barre_rechercher_salle']) && $tableaufetchsalle<>null && $rechercheSalleActiver) {
+                    echo 'cascascacasc';
+                    foreach ($tableaufetchsalle as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
-                        echo htmlspecialchars($resultat['nom_salle']);
+                        echo htmlspecialchars($colonne['nom_salle']);
                         echo '</h3>';
-                        echo 'Site : <span>' . htmlspecialchars($resultat['emplacement']) . '</span> <br>';
-                        echo 'Etat : <span>' . htmlspecialchars($resultat['salle_disponible']) . '</span> <br>';
+                        echo 'Site : <span>' . htmlspecialchars($colonne['emplacement']) . '</span> <br>';
+                        echo 'Etat : <span>' . htmlspecialchars($colonne['salle_disponible']) . '</span> <br>';
                         echo '<p>';
-                        echo 'Nombre de places : <span>' . htmlspecialchars($resultat['nombre_places']) . '</span> <br>';
+                        echo 'Nombre de places : <span>' . htmlspecialchars($colonne['nombre_places']) . '</span> <br>';
                         echo '<div id="bouton">';
                         echo '<a href="#"><button>Réserver</button></a>';
                         echo '</div>';
@@ -119,13 +128,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                         echo '</div>';
                     }
                 }
+                if(isset($_GET['barre_rechercher_salle']) && $tableaufetchsalle==null && $rechercheSalleActiver){
+                    echo"<div id='aucun_resultat'>";
+                    echo "<h3>Aucun resultat</h3>";
+                    echo "</div>";
+                }
                 ?>
 
             </div>
         </div>
     </div>
-    <p style="color:black;font-size: 4rem;">savasv</p>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleMenuButton = document.getElementById('toggleButton');
