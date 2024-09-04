@@ -74,13 +74,10 @@ function seConnecter(PDO &$connexion) : bool{
 }//code...
     function getSalles(PDO & $connexion) {
         try {
-            $entree = $_POST['barre_rechercher_salle'];
+            $entree = $_GET['barre_rechercher_salle'];
             $entree = filter_var($entree, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $preparation = $connexion->prepare("
-                SELECT * FROM salle
-                WHERE nom_salle LIKE \"%:entree%\"
-            ");
-            $preparation->bindValue(':entree',$entree,PDO::PARAM_STR);
+            $requete = "SELECT *FROM salle WHERE nom_salle LIKE '%" .$entree. "%' ";
+            $preparation = $connexion->prepare($requete);
             $preparation->execute();
             return $preparation->fetchAll();
         } catch ( PDOException $e ) {
@@ -92,14 +89,11 @@ function seConnecter(PDO &$connexion) : bool{
         try {
             $entree = $_GET['barre_rechercher_site'];
             $entree = filter_var($entree, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            
-            $preparation = $connexion->prepare("SELECT *FROM salle WHERE emplacement LIKE \"$entree\"");
-            // $entree = '%'. $entree . '%';
-            // $preparation->bindValue(':entree',$entree,PDO::PARAM_STR);
-            echo "Slut !".$entree.'!';
+            $requete = "SELECT *FROM salle WHERE emplacement LIKE '%" .$entree. "%' ";
+            $preparation = $connexion->prepare($requete);
             $preparation->execute();
             return $preparation->fetchAll();
-        } catch ( PDOException $e ) {
+        } catch ( Exception $e ) {
             echo 'getSites '.$e->getMessage().$e->getLine();
             return false;
         }

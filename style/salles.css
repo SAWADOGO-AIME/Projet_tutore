@@ -31,7 +31,6 @@ form img{
 #rechercher_salle,#rechercher_site{
     margin: 20px 20px;
     min-height: 600px;
-    background-color: red;
 }
 #rechercher_salle{
     border-left: 5px dashed rgb(200, 200,200);

@@ -1,13 +1,15 @@
 <?php
+$tableaufetch = null;
+require_once 'connexion_base_Donnee.php';
+require_once 'functions.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site']) || isset($_GET['barre_rechercher_salle'])) {
     try {
-        require_once 'connexion_base_Donnee.php';
-        require_once 'functions.php';
         if (isset($_GET['barre_rechercher_site'])) {
             $tableaufetch = getSites($connexion);
         }
         if (isset($_GET['barre_rechercher_salle'])) {
             $tableaufetch = getSalles($connexion);
+            toheaven($tableaufetch);
         }
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
@@ -48,9 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
             </div>
             <div class="resultat_recherche">
                 <?php
-                echo "Salut";
-                if (isset($_GET['barre_rechercher_site']) || true) {
-                    toheaven($tableaufetch);
+                if (!isset($_GET['barre_rechercher_site'])){
+                    $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY nom_salle');
+                    $preparation->execute();
+                    $resultat = $preparation->fetchAll();
+                }
+                else {
+                    $resultat=getSites($connexion);
+                }
+                if (isset($_GET['barre_rechercher_site']) || $tableaufetch<>null) {
                     foreach ($tableaufetch as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
@@ -71,6 +79,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
             </div>
         </div>
 
+
+
+        <div id="rechercher_salle">
+            <div class="champ_rechercher">
+                <form action="salles.php" method="GET">
+                    <input type="text" name="barre_rechercher_salle" id="barre_rechercher_salle" placeholder="rechercher salle">
+                    <button type="submit">
+                        <img src="img/loupe_black.png" alt="loupe">
+                    </button>
+                </form>
+            </div>
+
+            <div class="resultat_recherche">
+                <?php
+                if (!isset($_GET['barre_rechercher_salle'])){
+                    $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY emplacement');
+                    $preparation->execute();
+                    $resultat = $preparation->fetchAll();
+                }
+                else {
+                    $resultat=getSalles($connexion);
+                }
+
+                if (isset($_GET['barre_rechercher_salle']) && $tableaufetch<>null) {
+                    foreach ($tableaufetch as $resultat) {
+                        echo '<div class="resultat_individuel">';
+                        echo '<h3>';
+                        echo htmlspecialchars($resultat['nom_salle']);
+                        echo '</h3>';
+                        echo 'Site : <span>' . htmlspecialchars($resultat['emplacement']) . '</span> <br>';
+                        echo 'Etat : <span>' . htmlspecialchars($resultat['salle_disponible']) . '</span> <br>';
+                        echo '<p>';
+                        echo 'Nombre de places : <span>' . htmlspecialchars($resultat['nombre_places']) . '</span> <br>';
+                        echo '<div id="bouton">';
+                        echo '<a href="#"><button>Réserver</button></a>';
+                        echo '</div>';
+                        echo '</p>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+
+            </div>
+        </div>
     </div>
     <p style="color:black;font-size: 4rem;">savasv</p>
 
