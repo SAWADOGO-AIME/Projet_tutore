@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
             <div class="resultat_recherche">
                 <?php
                 if (!isset($_GET['barre_rechercher_site'])){
-                    $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY nom_salle');
+                    $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY emplacement');
                     $preparation->execute();
                     $resultat = $preparation->fetchAll();
                 }
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
             <div class="resultat_recherche">
                 <?php
                 if (!isset($_GET['barre_rechercher_salle'])){
-                    $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY emplacement');
+                    $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY nom_salle');
                     $preparation->execute();
                     $resultat = $preparation->fetchAll();
                 }
@@ -111,7 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                 }
 
                 if (isset($_GET['barre_rechercher_salle']) && $tableaufetchsalle<>null && $rechercheSalleActiver) {
-                    echo 'cascascacasc';
                     foreach ($tableaufetchsalle as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
