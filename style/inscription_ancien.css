@@ -1,0 +1,212 @@
+.connexion .ConnexionButton {
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.connexion .ConnexionButton a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.connexion .ConnexionButton:hover {
+    background-color: #ddd;
+}
+
+/* Toggle Menu (pour petits écrans) */
+.toggle_menu {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.toggle_menu div {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+}
+
+
+/* Formulaire d'inscription */
+.formulaire {
+    background-color: white;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulaire h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #004080;
+}
+
+.input-formulaire {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-formulaire label {
+    display: block;
+    margin-bottom: 5px;
+    color: #004080;
+    font-weight: bold;
+}
+
+.input-formulaire input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input-formulaire input:focus {
+    border-color: #004080;
+    outline: none;
+}
+
+.input-formulaire .line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: #004080;
+    transition: width 0.3s;
+}
+
+.input-formulaire input:focus ~ .line {
+    width: 100%;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #002f5c;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .toggle_menu {
+        display: block;
+    }
+    .nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color:#4CAF50;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        flex-direction: column;
+        width: 150px;
+    }
+    .nav ul.active {
+        display: flex;
+    }
+    .nav ul li {
+        width: 100%;
+        text-align: left;
+    }
+    .nav ul li a {
+        color: #333;
+        padding: 10px 20px;
+        display: block;
+    }
+    .nav ul li a:hover {
+        background-color: #FFD700;
+        color: #333;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    font-family: 'Lexend', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #FFD700; 
+}
+
+.footer-section p,
+.footer-section ul,
+.footer-section li {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #FFD700; 
+}
+
+.social-icons a {
+    color: white;
+    margin-right: 10px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #FFD700; 
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    font-size: 14px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}

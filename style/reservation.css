@@ -1,0 +1,61 @@
+/* SearchBar Section */
+.SearchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.SearchInputSite,
+.SearchInputSalle {
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.searchButtonSite,
+.searchButtonSalle {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.searchButtonSite img,
+.searchButtonSalle img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Table Section */
+.table-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+}
+
+table td img.location-img {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
