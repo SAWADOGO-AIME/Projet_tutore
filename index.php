@@ -3,7 +3,11 @@ session_start();
 ?>
 <?php
     require_once 'connexion_base_Donnee.php';
-    $resultat_req = $connexion->query('SELECT * FROM salle LIMIT 3');
+    try {
+        $resultat_req = $connexion->query('SELECT * FROM salle LIMIT 3');
+    } catch (Exception $e) {
+        echo 'Erreur : '. $e->getMessage();
+    }
 
 ?>
 <!DOCTYPE html>

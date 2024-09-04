@@ -5,8 +5,6 @@ $rechercheSalleActiver = false;
 $rechercheSiteActiver = false;
 require_once 'connexion_base_Donnee.php';
 require_once 'functions.php';
-echo 'Halllo';
-toheaven($_GET);
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site']) || isset($_GET['barre_rechercher_salle'])) {
     try {
         
@@ -17,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
         if (isset($_GET['barre_rechercher_salle'])) {
             $tableaufetchsalle = getSalles($connexion);
             $rechercheSalleActiverteActiver = true;
-            toheaven($tableaufetchsalle);
         }
     } catch (Exception $e) {
         echo 'Erreur : ' . $e->getMessage();
@@ -57,16 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                 </form>
             </div>
             <div class="resultat_recherche">
-                <?php
+            <?php
                 if (!isset($_GET['barre_rechercher_site'])){
                     $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY emplacement');
                     $preparation->execute();
-                    $resultat = $preparation->fetchAll();
-                }
-                else {
-                    $resultat=getSites($connexion);
-                }
-                if (isset($_GET['barre_rechercher_site']) || $tableaufetchsite<>null) {
+                    $tableaufetchsite = $preparation->fetchAll();
                     foreach ($tableaufetchsite as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
@@ -81,6 +73,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                         echo '</div>';
                         echo '</p>';
                         echo '</div>';
+                    }
+                }
+                else{
+                    $tableaufetchsite = getSites($connexion);
+                    if ($tableaufetchsite<>null){
+                        foreach ($tableaufetchsite as $colonne) {
+                            echo '<div class="resultat_individuel">';
+                            echo '<h3>';
+                            echo htmlspecialchars($colonne['nom_salle']);
+                            echo '</h3>';
+                            echo 'Site : <span>' . htmlspecialchars($colonne['emplacement']) . '</span> <br>';
+                            echo 'Etat : <span>' . htmlspecialchars($colonne['salle_disponible']) . '</span> <br>';
+                            echo '<p>';
+                            echo 'Nombre de places : <span>' . htmlspecialchars($colonne['nombre_places']) . '</span> <br>';
+                            echo '<div id="bouton">';
+                            echo '<a href="#"><button>Réserver</button></a>';
+                            echo '</div>';
+                            echo '</p>';
+                            echo '</div>';
+                        }
+                    }
+                    else{
+                        echo"<div id='aucun_resultat'>";
+                        echo "<h3>Aucun resultat</h3>";
+                        echo "</div>";
                     }
                 }
                 ?>
@@ -104,13 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                 if (!isset($_GET['barre_rechercher_salle'])){
                     $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY nom_salle');
                     $preparation->execute();
-                    $resultat = $preparation->fetchAll();
-                }
-                else {
-                    $resultat=getSalles($connexion);
-                }
-
-                if (isset($_GET['barre_rechercher_salle']) && $tableaufetchsalle<>null && $rechercheSalleActiver) {
+                    $tableaufetchsalle = $preparation->fetchAll();
                     foreach ($tableaufetchsalle as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
@@ -127,10 +138,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                         echo '</div>';
                     }
                 }
-                if(isset($_GET['barre_rechercher_salle']) && $tableaufetchsalle==null && $rechercheSalleActiver){
-                    echo"<div id='aucun_resultat'>";
-                    echo "<h3>Aucun resultat</h3>";
-                    echo "</div>";
+                else{
+                    $tableaufetchsalle = getSalles($connexion);
+                    if ($tableaufetchsalle<>null){
+                        foreach ($tableaufetchsalle as $colonne) {
+                            echo '<div class="resultat_individuel">';
+                            echo '<h3>';
+                            echo htmlspecialchars($colonne['nom_salle']);
+                            echo '</h3>';
+                            echo 'Site : <span>' . htmlspecialchars($colonne['emplacement']) . '</span> <br>';
+                            echo 'Etat : <span>' . htmlspecialchars($colonne['salle_disponible']) . '</span> <br>';
+                            echo '<p>';
+                            echo 'Nombre de places : <span>' . htmlspecialchars($colonne['nombre_places']) . '</span> <br>';
+                            echo '<div id="bouton">';
+                            echo '<a href="#"><button>Réserver</button></a>';
+                            echo '</div>';
+                            echo '</p>';
+                            echo '</div>';
+                        }
+                    }
+                    else{
+                        echo"<div id='aucun_resultat'>";
+                        echo "<h3>Aucun resultat</h3>";
+                        echo "</div>";
+                    }
                 }
                 ?>
 

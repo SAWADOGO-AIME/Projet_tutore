@@ -98,7 +98,8 @@ function seConnecter(PDO &$connexion) : bool{
             return false;
         }
     }
-    function toheaven(& $something){
+
+    function toheaven($something){
         echo '<pre>';
         print_r( $something );
         echo '</pre>';
