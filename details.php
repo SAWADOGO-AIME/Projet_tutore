@@ -1,12 +1,18 @@
 <?php
     if(isset($_GET['SalleNumero']))
     {
-        $id = $_GET['SalleNumero'];
-        require_once 'connexion_base_Donnee.php';
-        $preparation = $connexion->prepare('SELECT * FROM salle WHERE id_salle=:id');
-        $preparation->bindValue(':id',$id,PDO::PARAM_INT);
-        $preparation->execute();
-        $resultat = $preparation->fetch(PDO::FETCH_ASSOC);
+        try{
+            $id = $_GET['SalleNumero'];
+            require_once 'connexion_base_Donnee.php';
+            require_once 'functions.php';
+            $preparation = $connexion->prepare('SELECT * FROM salle WHERE id_salle=:id');
+            $preparation->bindValue(':id',$id,PDO::PARAM_INT);
+            $preparation->execute();
+            $resultat = $preparation->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(Exception $e){
+            echo 'Erreur : '. $e->getMessage();
+        }
     }   
 ?>
 <!DOCTYPE html>

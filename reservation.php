@@ -92,8 +92,9 @@ require_once 'connexion_base_Donnee.php';
                     echo "</td>";
 
                     echo "<td>";
-                    echo '<a href="details.php?SalleNumero=<?=$colonne[\'id_salle\']?>\"><button>Voir salle</button></a>';
-                    echo '<a href="liberer_salle.php?Salle_a_Liberer=<?=$colonne[\'id_reservation\']?>\"><button>Libérer</button></a>';
+                    
+                    echo "<a href=\"details.php?SalleNumero=" .htmlspecialchars($colonne['id_salle']). "\"><button>Voir salle</button></a>";
+                    echo "<a href=\"liberer_salle.php?Salle_a_Liberer=" .htmlspecialchars($colonne['id_reservation']) ."\"><button>Libérer</button></a>";
                     echo "</td>";
                     echo "</tr>";
                     }
