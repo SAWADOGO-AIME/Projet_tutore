@@ -51,7 +51,7 @@ require_once 'connexion_base_Donnee.php';
             }
             else{
                 $tableauFetch = getReservation($connexion);
-                if(!$tableauFetch || $tableauFetch[0]['nom_salle']){
+                if(!$tableauFetch){
                     echo '<div id="message">';
                     echo '<h3>';
                     echo "Vous n'avez encore fait aucune réservation";
