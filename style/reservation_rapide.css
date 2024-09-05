@@ -1,5 +1,5 @@
 .container {
-    padding-top: 70px;
+    padding-top: 20px;
     position: relative;
     text-align: center;
     color: white;
@@ -7,8 +7,8 @@
 
 }
 .container img{
-    width: 700px;
-    height: 800px;
+    width: 600px;
+    height: 700px;
 }
 
 .background-image {
@@ -31,14 +31,21 @@
 }
 
 .reservation-form h2 {
-    margin-bottom: 1rem;
+    margin-top: 20px;
+    font-size: 2rem;
+    text-decoration: underline;
+    font-family: nerko;
+    color: #4CAF50;
+}
+.reservation-form h3 {
+    font-size: 1.5rem;
     font-family: nerko;
     color: #4CAF50;
 }
 
 .reservation-form p {
-    font-size: 14px;
-    color: #333;
+    font-size: 1rem;
+    color: black;
     margin-bottom: 20px;
 }
 
@@ -52,6 +59,7 @@
 
 .reservation-form select,
 .reservation-form input[type="date"] {
+    text-align: center;
     width: calc(100% - 20px);
     padding: 10px;
     margin-bottom: 15px;
@@ -61,17 +69,19 @@
     font-size: 14px;
 }
 
-.date-time {
+.champ_date_temps {
     display: flex;
     justify-content: space-between;
+    margin-bottom:10px;
 }
 
-.date-input {
+
+.entree_date_heure {
     flex: 1;
     margin-right: 10px;
 }
 
-.date-input:last-child {
+.entree_date_heure:last-child {
     margin-right: 0;
 }
 

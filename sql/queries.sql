@@ -42,6 +42,10 @@ CREATE TABLE reservation (
     );
 INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_reservataire`, `jour_reserver`, `heure_debut`, `heure_fin`, `date_reservation`) VALUES (NULL, '2', '1', '2024-09-05', '22:39:00', '23:47:15', NULL)
 
+                INSERT INTO `reservation` 
+                (`id_reservation`, `id_salle`, `id_reservataire`, `jour_reserver`, `heure_debut`, `heure_fin`, `date_reservation`)
+                VALUES (NULL, '2', '1', '2024-09-05', '22:39:00', '23:47:15', NULL)
+
 
 SELECT * 
 FROM reservation
@@ -75,3 +79,4 @@ CREATE TABLE reservation (
     CONSTRAINT FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
     CONSTRAINT FOREIGN KEY (id_reservataire) REFERENCES utilisateur(id_utilisateur)
     );
+

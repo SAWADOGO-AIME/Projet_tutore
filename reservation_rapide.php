@@ -1,18 +1,40 @@
 <?php
     session_start();
-    if(isset($_GET['SalleNumero']))
+    require_once 'functions.php';
+    if ($_SERVER['REQUEST_METHOD'] =='GET')
     {
-        if (!isset($_SESSION['connecter']))
-        {
-            header('Location: connexion.php');
-            exit;
-        }
-        $id = $_GET['SalleNumero'];
+        unset($_SESSION['id_SalleReservationEnCours']);
+    }
+    if($_SERVER['REQUEST_METHOD'] =='POST' || $_SERVER['REQUEST_METHOD'] =='GET'){
+        $reservationEffectuer = false;
         require_once 'connexion_base_Donnee.php';
+        if(isset($_GET['SalleNumero']) || isset($_SESSION['id_SalleReservationEnCours']))
+        {   
+            if (!isset($_SESSION['connecter']))
+            {
+                header('Location: connexion.php');
+                exit;
+            }
+
+            if(!isset($_SESSION['id_SalleReservationEnCours']))
+                $_SESSION['id_SalleReservationEnCours']= $_GET['SalleNumero'];
+        
+        $id = $_SESSION['id_SalleReservationEnCours'];
         $preparation = $connexion->prepare('SELECT * FROM salle WHERE id_salle=:id');
         $preparation->bindValue(':id',$id,PDO::PARAM_INT);
         $preparation->execute();
-        $resultat = $preparation->fetch(PDO::FETCH_ASSOC);
+        $resultatSalleConcerne = $preparation->fetch(PDO::FETCH_ASSOC);
+        
+        }
+        if($_SERVER['REQUEST_METHOD'] =='POST')
+        {
+            if(reserverSalle($connexion)){
+                $reservationEffectuer = true;
+            }
+        }
+}
+    else{
+        header('Location:salles.php');
     }
 ?>
 <!DOCTYPE html>
@@ -38,51 +60,48 @@
                 <img src="img/animal.png" alt="Background Image" class="background-image">
                 <div class="reservation-form">
                     <h2>Fiche de réservation</h2>
+                    <h3>
+                        Salle : <?=htmlspecialchars($resultatSalleConcerne['nom_salle'])?> <br>
+                        Site : <?=htmlspecialchars($resultatSalleConcerne['emplacement'])?>
+                    </h3>
                     <p>Faites une demande de réservation et recevez confirmation par mail...</p>
-                    <form>
-                        <label for="room">Sélectionnez la salle</label>
-                        <select id="room" name="room">
-                            <option value="">Sélectionnez</option>
-                            <!-- Add more room options here -->
-                        </select>
-        
-                        <div class="date-time">
-                            <div class="date-input">
-                                <label for="start">H Début</label>
-                                <input type="date" id="start" name="start">
-                            </div>
-                            <div class="date-input">
-                                <label for="end">H Fin</label>
-                                <input type="date" id="end" name="end">
+                    <form method="post" action="reservation_rapide.php">
+                        <div class="champ_date_temps">
+                            <div class="entree_date_heure">
+                                <label for="jour_reserver">Jour de la réservation</label>
+                                <input type="date" id="jour_reserver" name="jour_reserver" required>
                             </div>
                         </div>
-                        <div class="date-time">
-                            <div class="date-input">
-                                <label for="start">H Début</label>
-                                <input type="time" id="start" name="start">
+                        <div class="champ_date_temps">
+                            <div class="entree_date_heure">
+                                <label for="heure_debut">Heure Début</label>
+                                <input type="time" id="heure_debut" name="heure_debut" required>
                             </div>
-                            <div class="date-input">
-                                <label for="end">H Fin</label>
-                                <input type="time" id="end" name="end">
+                            <div class="entree_date_heure">
+                                <label for="heure_fin">Heure Fin</label>
+                                <input type="time" id="heure_fin" name="heure_fin" required>
                             </div>
                         </div>
         
-                        <label for="participants">Nombre de participants</label>
-                        <select id="participants" name="participants">
-                            <option value="50">50</option>
-                            <option value="75">75</option>
-                            <option value="100">100</option>
-                            <option value="125">125</option>
-                            <option value="200">200</option>
-                            <option value="400">400</option>
-                            <option value="700">700</option>
-                            <option value="1000">1000</option>
-                            <option value="1500">1500</option>
-                            <option value="2000">2000</option>
-                            <option value="2500">2500</option>
+                        <label for="nbr_participants">Nombre de participants</label>
+                        <select id="nbr_participants" name="nbr_participants" required>
+                            <?php
+                                $x = 25;
+                                $i = 50;
+                                for ($i; $i<=$resultatSalleConcerne['nombre_places']; $i+=$x){
+                                    echo '<option value=" '. $i .'"> '. $i .'</option>';
+                                    if ($i == 100)
+                                    $x = 50;
+                                    if ($i == 200)
+                                    $x = 300;
+                                    if(($i+$x)> $resultatSalleConcerne['nombre_places'] && $i<>50){
+                                        echo '<option value=" '. $resultatSalleConcerne['nombre_places'] .'"> '. $resultatSalleConcerne['nombre_places'] .'</option>';
+                                    }
+
+                                }
+                            ?>
                         </select>
-        
-                        <button type="submit">Valider</button>
+                            <button type="submit">Valider</button>
                     </form>
                 </div>
             </div>

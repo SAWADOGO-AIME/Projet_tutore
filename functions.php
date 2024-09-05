@@ -113,7 +113,7 @@ function seConnecter(PDO &$connexion) : bool{
         }
     }
 
-    function getReservation(& $connexion){
+    function getReservation(PDO & $connexion){
         try {
             $requete = "
             SELECT 
@@ -126,6 +126,25 @@ function seConnecter(PDO &$connexion) : bool{
             return $preparation->fetchAll();
         }
         catch ( PDOException $e ) {
+            echo 'Erreur : '.$e->getMessage();
+        }
+    }
+    function reserverSalle(PDO &$connexion){
+        try {
+            $preparation = $connexion->prepare("
+                INSERT INTO `reservation` 
+                (id_salle,id_reservataire,jour_reserver,heure_debut,heure_fin,date_reservation)
+                VALUES ( :salle_id, :usr_id, :jr_reserver, :h_deb,:h_fin, :heureDeReservation)
+            ");
+            $preparation->bindValue(':salle_id',$_SESSION['id_SalleReservationEnCours'],PDO::PARAM_INT);
+            $preparation->bindValue(':usr_id',$_SESSION['id_user'],PDO::PARAM_INT);
+            $preparation->bindValue(':jr_reserver',$_POST['jour_reserver']);
+            $preparation->bindValue(':h_deb',$_POST['heure_debut']);
+            $preparation->bindValue(':h_fin',$_POST['heure_fin']);
+            $timeStampActuelle = date('Y-m-d H:i:s', time());
+            $preparation->bindValue(':heureDeReservation',$timeStampActuelle);
+            $preparation->execute();
+        } catch ( PDOException $e ) {
             echo 'Erreur : '.$e->getMessage();
         }
     }

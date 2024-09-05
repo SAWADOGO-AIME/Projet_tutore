@@ -4,7 +4,7 @@ session_start();
 <?php
     require_once 'connexion_base_Donnee.php';
     try {
-        $resultat_req = $connexion->query('SELECT * FROM salle LIMIT 3');
+        $resultat_req = $connexion->query('SELECT * FROM salle LIMIT 5');
     } catch (Exception $e) {
         echo 'Erreur : '. $e->getMessage();
     }
