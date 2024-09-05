@@ -76,10 +76,6 @@
                 $preparation->bindValue(':id_salle',$_GET['SalleNumero'],PDO::PARAM_INT);
                 $preparation->execute();
                 $resultatPOURcal = $preparation->fetchall(PDO::FETCH_ASSOC);
-                toheaven($resultatPOURcal);
-                $debut = $resultatPOURcal[0]['jour_reserver'] .'T'.$resultatPOURcal[0]['heure_debut'];
-                $fin = $resultatPOURcal[0]['jour_reserver'] .'T'.$resultatPOURcal[0]['heure_debut'];
-                echo $debut .' | '. $fin;
             }catch(Exception $e){
                 echo 'Erreur : '. $e->getMessage();
             }
