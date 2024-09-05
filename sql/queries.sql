@@ -43,6 +43,24 @@ CREATE TABLE reservation (
 INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_reservataire`, `jour_reserver`, `heure_debut`, `heure_fin`, `date_reservation`) VALUES (NULL, '2', '1', '2024-09-05', '22:39:00', '23:47:15', NULL)
 
 
+SELECT * 
+FROM reservation
+LEFT JOIN utilisateur ON id_reservataire=utilisateur.id_utilisateur
+
+SELECT 
+	salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin
+FROM
+    reservation
+LEFT JOIN utilisateur ON reservation.id_reservataire =utilisateur.id_utilisateur
+LEFT JOIN salle ON salle.id_salle=reservation.id_salle;
+
+
+SELECT 
+	salle.id_salle,reservation.id_reservation,salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin
+FROM
+    reservation
+LEFT JOIN utilisateur ON reservation.id_reservataire =utilisateur.id_utilisateur
+LEFT JOIN salle ON salle.id_salle=reservation.id_salle;
 
 #Ancien
 CREATE TABLE reservation (

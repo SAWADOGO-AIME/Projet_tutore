@@ -67,6 +67,9 @@ table th {
     font-family: sansita;
     font-size: 1.6rem;
 }
+table th:last-child {
+    text-align: center;
+}
 tbody tr td{
     font-weight: bold;
 }
@@ -80,16 +83,17 @@ tbody td a button{
     border-radius: 5px;
     box-shadow: 0px 0px 2px;
     border: none;
-    width: 100px;
+    width: 150px;
     text-align: center;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin: 0px 10px;
 }
 tbody td a button:hover{
     background-color: #ddd;
     transition: background-color 0.5s;
 }
-#message_non_connecter{
+#message{
     width: 60%;
     padding: 50px;
     margin: 50px auto;
@@ -98,19 +102,19 @@ tbody td a button:hover{
     background-color: white;
     box-shadow: 0px 0px 2px;
 }
-#message_non_connecter h3{
+#message h3{
     font-family: sansita;
     font-size: 2rem;
 }
-#message_non_connecter p{
+#message p{
     font-family: nerko;
     font-size: 1.4rem;
 }
-#message_non_connecter p a{
+#message p a{
     color:lime;
     font-size: 1.6rem;
 }
-#message_non_connecter p a:hover{
+#message p a:hover{
     color: #FFD700;
     transition: color 0.5s;
 }

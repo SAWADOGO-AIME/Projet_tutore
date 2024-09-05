@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once 'functions.php';
+require_once 'connexion_base_Donnee.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,33 +50,58 @@ session_start();
                 echo '</div>';
             }
             else{
+                $tableauFetch = getReservation($connexion);
+                if(!$tableauFetch){
+                    echo '<div id="message_non_connecter">';
+                    echo '<h3>';
+                    echo "Vous n'avez encore fait aucune réservation";
+                    echo '</h3>';
+                    echo '<p>Cliquez ici pour en faire une : <a href="salles.php">Voir salles</a></p>';
+                    echo '</div>';
+                }
+                else{
+                    echo "<table>";
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th>Nom de la Salle</th>";
+                    echo "<th>Site</th>";
+                    echo "<th>Jour reservé</th>";
+                    echo "<th>Heure Debut</th>";
+                    echo "<th>Heure Fin</th>";
+                    echo "<th>Actions</th>";
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
 
+                    foreach($tableauFetch as $colonne){
+                    echo "<tr>";
+                    echo "<td>";
+                    echo htmlspecialchars($colonne['nom_salle']);
+                    echo "</td>";
+                    echo "<td>";
+                    echo htmlspecialchars($colonne['emplacement']);
+                    echo "</td>";
+                    echo "<td>";
+                    echo htmlspecialchars($colonne['jour_reserver']);
+                    echo "</td>";
+                    echo "<td>";
+                    echo htmlspecialchars($colonne['heure_debut']);
+                    echo "</td>";
+                    echo "<td>";
+                    echo htmlspecialchars($colonne['heure_fin']);
+                    echo "</td>";
+
+                    echo "<td>";
+                    echo '<a href="details.php?SalleNumero=<?=$colonne[\'id_salle\']?>\"><button>Voir salle</button></a>';
+                    echo '<a href="liberer_salle.php?Salle_a_Liberer=<?=$colonne[\'id_reservation\']?>\"><button>Libérer</button></a>';
+                    echo "</td>";
+                    echo "</tr>";
+                    }
+                    echo "</tbody>";
+                    echo "</table>";
+                }
             }
         ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom de la Salle</th>
-                    <th>Site</th>
-                    <th>Jour reservé</th>
-                    <th>Heure Debut</th>
-                    <th>Heure Fin</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Example row -->
-                <tr>
-                    <td>Bloc Pédagogique</td>
-                    <td>Site du 22</td>
-                    <td>31-12-2023</td>
-                    <td>31-12-2024</td>
-                    <td>31-12-2024</td>
-                    <td><a href="liberer_salle.php"><button>Libérer</button></a></td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
     </div>
 
     <script>

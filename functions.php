@@ -17,6 +17,13 @@ function seConnecter(PDO &$connexion) : bool{
 
         if ($result){
             session_start();
+            //Pour avoir l'ID
+            $requete = "SELECT id_utilisateur FROM utilisateur WHERE email_utilisateur='".$email."'";
+            $preparation = $connexion->prepare($requete);
+            $preparation->execute();
+            $id_req = $preparation->fetch(PDO::FETCH_ASSOC);
+            //
+            $_SESSION['id_user'] = $id_req['id_utilisateur'];
             $_SESSION['nom_user'] = $result['nom_utilisateur'];
             $_SESSION['prenom_user'] = $result['prenom_utilisateur'];
             $_SESSION['email_user'] = $result['email_utilisateur'];
@@ -56,6 +63,13 @@ function seConnecter(PDO &$connexion) : bool{
         $preparation->bindValue(':origine',$origine,PDO::PARAM_STR);
         $preparation->execute();
         session_start();
+        //Pour avoir l'ID
+        $requete = "SELECT id_utilisateur FROM utilisateur WHERE email_utilisateur='".$email."'";
+        $preparation = $connexion->prepare($requete);
+        $preparation->execute();
+        $id_req = $preparation->fetch(PDO::FETCH_ASSOC);
+        //
+        $_SESSION['id_user'] = $id_req['id_utilisateur'];
         $_SESSION['nom_user'] = $nom;
         $_SESSION['prenom_user'] = $prenom;
         $_SESSION['email_user'] = $email;
@@ -99,6 +113,22 @@ function seConnecter(PDO &$connexion) : bool{
         }
     }
 
+    function getReservation(& $connexion){
+        try {
+            $requete = "
+            SELECT 
+            salle.id_salle,reservation.id_reservation,salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin
+            FROM reservation
+            LEFT JOIN utilisateur ON reservation.id_reservataire ={$_SESSION['id_user']}
+            LEFT JOIN salle ON salle.id_salle=reservation.id_salle";
+            $preparation = $connexion->prepare($requete);
+            $preparation->execute();
+            return $preparation->fetchAll();
+        }
+        catch ( PDOException $e ) {
+            echo 'Erreur : '.$e->getMessage();
+        }
+    }
     function toheaven($something){
         echo '<pre>';
         print_r( $something );
