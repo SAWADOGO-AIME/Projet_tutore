@@ -1,5 +1,6 @@
 <?php
     echo '<header>';
+    echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">';
     echo '<div class="logo">';
         echo '<a href="index.php"><img src="img/logo.png" alt="Logo"></a>';
     echo '</div>';

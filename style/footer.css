@@ -39,13 +39,13 @@
     padding: 0;
 }
 
-.footer-section ul li a {
+.footer-section ul li a , .footer-section a{
     color: white;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-.footer-section ul li a:hover {
+.footer-section ul li a:hover , .footer-section a{
     color: #FFD700; /* Or change to your brand color */
 }
 
