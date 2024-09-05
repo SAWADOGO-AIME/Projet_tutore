@@ -38,13 +38,27 @@ session_start();
 
     <!-- Table Section -->
     <div class="table-container">
+        <?php
+            if(!isset($_SESSION['connecter'])){
+                echo '<div id="message_non_connecter">';
+                echo '<h3>';
+                echo 'Veuillez vous connecter pour voir vos réservations';
+                echo '</h3>';
+                echo '<p>Cliquez ici : <a href="connexion.php">Se connecter</a></p>';
+                echo '</div>';
+            }
+            else{
+
+            }
+        ?>
         <table>
             <thead>
                 <tr>
                     <th>Nom de la Salle</th>
                     <th>Site</th>
-                    <th>Date/Heure Debut</th>
-                    <th>Date/Heure Fin</th>
+                    <th>Jour reservé</th>
+                    <th>Heure Debut</th>
+                    <th>Heure Fin</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -55,8 +69,8 @@ session_start();
                     <td>Site du 22</td>
                     <td>31-12-2023</td>
                     <td>31-12-2024</td>
+                    <td>31-12-2024</td>
                     <td><a href="liberer_salle.php"><button>Libérer</button></a></td>
-                    
                 </tr>
                 <!-- Add more rows as needed -->
             </tbody>

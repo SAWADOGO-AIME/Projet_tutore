@@ -89,3 +89,28 @@ tbody td a button:hover{
     background-color: #ddd;
     transition: background-color 0.5s;
 }
+#message_non_connecter{
+    width: 60%;
+    padding: 50px;
+    margin: 50px auto;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 0px 2px;
+}
+#message_non_connecter h3{
+    font-family: sansita;
+    font-size: 2rem;
+}
+#message_non_connecter p{
+    font-family: nerko;
+    font-size: 1.4rem;
+}
+#message_non_connecter p a{
+    color:lime;
+    font-size: 1.6rem;
+}
+#message_non_connecter p a:hover{
+    color: #FFD700;
+    transition: color 0.5s;
+}

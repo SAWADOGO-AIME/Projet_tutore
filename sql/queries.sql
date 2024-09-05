@@ -33,6 +33,22 @@ CREATE TABLE reservation (
     id_reservation INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     id_salle INT NOT NULL ,
     id_reservataire INT NOT NULL,
+    jour_reserver DATE NOT NULL,
+    heure_debut TIME NOT NULL,
+    heure_fin TIME NOT NULL,
+    date_reservation TIMESTAMP,
+    CONSTRAINT FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
+    CONSTRAINT FOREIGN KEY (id_reservataire) REFERENCES utilisateur(id_utilisateur)
+    );
+INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_reservataire`, `jour_reserver`, `heure_debut`, `heure_fin`, `date_reservation`) VALUES (NULL, '2', '1', '2024-09-05', '22:39:00', '23:47:15', NULL)
+
+
+
+#Ancien
+CREATE TABLE reservation (
+    id_reservation INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_salle INT NOT NULL ,
+    id_reservataire INT NOT NULL,
     date_debut DATE NOT NULL,
     date_fin DATE NOT NULL,
     heure_debut TIME NOT NULL,
@@ -41,4 +57,3 @@ CREATE TABLE reservation (
     CONSTRAINT FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
     CONSTRAINT FOREIGN KEY (id_reservataire) REFERENCES utilisateur(id_utilisateur)
     );
-INSERT INTO `reservation` (`id_salle`, `heure_debut`, `heure_fin`, `date_reservation`) VALUES ( '1', '00:23:29', '00:25:40', current_timestamp());
