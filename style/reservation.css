@@ -1,5 +1,13 @@
 /* SearchBar Section */
 .SearchBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.SearchBar form{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,27 +15,30 @@
     background-color: #f4f4f4;
 }
 
-.SearchInputSite,
-.SearchInputSalle {
+form input {
     padding: 10px;
     margin: 0 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 200px;
+    font-size: 1.2rem;
 }
 
-.searchButtonSite,
-.searchButtonSalle {
-    background: none;
+form button {
+    background: white;
     border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px;
     cursor: pointer;
 }
 
-.searchButtonSite img,
-.searchButtonSalle img {
-    width: 20px;
-    height: 20px;
+.searchButtonSite img, .searchButtonSalle img {
+    width: 1.5rem;
+    height: 1.5rem;
 }
+/* .searchButtonSite input, .searchButtonSalleinput input{
+    width: 40%;
+} */
 
 /* Table Section */
 .table-container {
@@ -35,6 +46,7 @@
     padding: 20px;
     background-color: #f4f4f4;
     border-radius: 5px;
+    min-height: 300px;
 }
 
 table {
@@ -42,20 +54,38 @@ table {
     border-collapse: collapse;
 }
 
-table th,
-table td {
+table th,table td {
     border: 1px solid #ddd;
     padding: 10px;
+    height: 40px;
     text-align: left;
 }
 
 table th {
-    background-color: #007bff;
+    background-color: rgb(100, 100, 100);
     color: white;
+    font-family: sansita;
+    font-size: 1.6rem;
 }
-
-table td img.location-img {
-    width: 30px;
-    height: 30px;
-    display: block;
+tbody tr td{
+    font-weight: bold;
+}
+tbody tr td:last-child{
+    text-align: center;
+    font-weight: bold;
+}
+tbody td a button{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px;
+    border: none;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+tbody td a button:hover{
+    background-color: #ddd;
+    transition: background-color 0.5s;
 }

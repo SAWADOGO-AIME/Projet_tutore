@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>Réservation</title>
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/footer.css">
@@ -23,12 +24,16 @@ session_start();
     <!-- SearchBar Section -->
     <div class="SearchBar">
         <!-- Search Site -->
-        <input class="SearchInputSite" type="text" placeholder="Rechercher site">
-        <button class="searchButtonSite"><img src="img/loupe.png" alt="Search"></button>
+        <form action="reservation.php" method="GET">
+            <input type="text" placeholder="Rechercher site">
+            <button type="submit" class="searchButtonSite"><img src="img/loupe_black.png" alt="Search"></button>
+        </form>
         <!-- Search Salle -->
-        <p>👈🏿---------👉🏿</p>
-        <input class="SearchInputSalle" type="text" placeholder="Rechercher salle">
-        <button class="searchButtonSalle"><img src="img/loupe.png" alt="Search"></button>
+        <!-- <p>👈🏿---------👉🏿</p> -->
+        <form action="reservation.php" method="GET">
+            <input type="text" placeholder="Rechercher salle">
+            <button type="submit" class="searchButtonSalle"><img src="img/loupe_black.png" alt="Search"></button>
+        </form>
     </div>
 
     <!-- Table Section -->
@@ -38,9 +43,9 @@ session_start();
                 <tr>
                     <th>Nom de la Salle</th>
                     <th>Site</th>
-                    <th>Date Debut</th>
-                    <th>Date Fin</th>
-                    <th>Libérer</th>
+                    <th>Date/Heure Debut</th>
+                    <th>Date/Heure Fin</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +55,7 @@ session_start();
                     <td>Site du 22</td>
                     <td>31-12-2023</td>
                     <td>31-12-2024</td>
-                    <td><a href="details.php">Libérer</a></td>
+                    <td><a href="liberer_salle.php"><button>Libérer</button></a></td>
                     
                 </tr>
                 <!-- Add more rows as needed -->

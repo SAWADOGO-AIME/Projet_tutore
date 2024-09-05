@@ -22,7 +22,7 @@
 }
 
 .footer-section h4 {
-    font-size: 18px;
+    font-size: 1rem;
     margin-bottom: 15px;
     color: #FFD700; /* Or change to your brand color */
 }
@@ -31,7 +31,7 @@
 .footer-section ul,
 .footer-section li {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
 
 .footer-section ul {
@@ -52,7 +52,7 @@
 .social-icons a {
     color: white;
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 1.5rem;
     transition: color 0.3s;
 }
 
@@ -64,7 +64,7 @@
     text-align: center;
     padding: 20px;
     background-color: #222;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .footer-bottom p {
@@ -74,6 +74,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 /* Assurez-vous que les icônes s'affichent correctement */
-.social-icons i {
+/* .social-icons i { */
     /* Ajoutez des styles si nécessaire */
-}
+/* } */
