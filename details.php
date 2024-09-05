@@ -64,7 +64,27 @@
         <!-- FullCalendar JS -->
 
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-
+        <?php
+        if(isset($_GET['SalleNumero']))
+        {
+            try{
+                $preparation = $connexion->prepare("
+                SELECT reservation.jour_reserver, reservation.heure_debut, reservation.heure_fin
+                FROM reservation
+                WHERE reservation.id_salle=:id_salle;
+                ");
+                $preparation->bindValue(':id_salle',$_GET['SalleNumero'],PDO::PARAM_INT);
+                $preparation->execute();
+                $resultatPOURcal = $preparation->fetchall(PDO::FETCH_ASSOC);
+                toheaven($resultatPOURcal);
+                $debut = $resultatPOURcal[0]['jour_reserver'] .'T'.$resultatPOURcal[0]['heure_debut'];
+                $fin = $resultatPOURcal[0]['jour_reserver'] .'T'.$resultatPOURcal[0]['heure_debut'];
+                echo $debut .' | '. $fin;
+            }catch(Exception $e){
+                echo 'Erreur : '. $e->getMessage();
+            }
+        }
+        ?>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
@@ -80,11 +100,18 @@
                     navLinks: true, // can click day/week names to navigate views
                     editable: true,
                     selectable: true,
-                    events: [{
-                        title: 'Birthday Party',
-                        start: '2024-08-30T07:00:00',
-                        end: '2024-08-30T10:00:00',
-                    }, ]
+                    events: [
+                        <?php
+                        foreach ($resultatPOURcal as $colonne)
+                        {
+                            echo "{";
+                            echo "title: 'Résever',";
+                            echo "start : '". htmlspecialchars($colonne['jour_reserver']) ."T". htmlspecialchars($colonne['heure_debut']) ."',";
+                            echo "end : '". htmlspecialchars($colonne['jour_reserver']) ."T". htmlspecialchars($colonne['heure_fin']) ."',";
+                            echo "},";
+                        } 
+                            ?>
+                    ]
                 });
 
                 calendar.render();

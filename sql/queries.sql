@@ -102,4 +102,6 @@ LEFT JOIN salle ON salle.id_salle = reservation.id_salle
 WHERE utilisateur.id_utilisateur = 2
 ORDER BY reservation.date_reservation DESC;
 
-echo "<a href=\"liberer_salle.php?Salle_a_Liberer=" .htmlspecialchars($colonne['id_reservation']). "><button class='liberate-button'><img src='img/cross.png' alt='Croix blanche'> Libérer</button></a>";
+title: "Résever",
+start: '<?htmlspecialchars()?>T<?htmlspecialchars($colonne['heure_debut'])?>',
+end: '<?htmlspecialchars($colonne['jour_reserver'])?>T<?htmlspecialchars($colonne['heure_fin'])?>',
