@@ -55,7 +55,15 @@
             <h2>Calendrier d'occupation</h2>
             <div id="calendar"></div>
             <div class="reserve-button">
-                <button>📅 Reserver</button>
+                
+                <?php
+                if(isset($_GET['SalleNumero'])){
+                    echo '<a href="reservation_rapide.php?SalleNumero='. htmlspecialchars($_GET['SalleNumero']) .'"><button>Réserver</button></a>';
+                }
+                else{
+                    echo '<a href="#"><button>📅 Reserver</button></a>';
+                }
+                ?>
             </div>
         </div>
         <!-- FullCalendar CSS -->
