@@ -3,6 +3,7 @@ session_start();
 ?>
 <?php
     require_once 'connexion_base_Donnee.php';
+    require_once 'functions.php';
     try {
         $resultat_req = $connexion->query('SELECT * FROM salle LIMIT 5');
     } catch (Exception $e) {
@@ -84,60 +85,56 @@ session_start();
 
     <!-- Ce bloc s'affiche uniquement si on est connecter -->
     <div class="si_connecter">
-    <h1>Vos réservations</h1>
+    <h1>Vos 4 dernière réservations</h1>
     <div class="grid-container">
-
-        <div class="room-card active">
-            <div class="card-header">
-                <img src="img/icon.png" alt="icon" class="icon">
-                <h2>Pavillon A</h2>
-            </div>
-            <div class="card-content">
-                <p>Site: INSSA</p>
-                <p>Heure de début: 08h</p>
-                <p>Heure de fin: 12h</p>
-                <button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button>
-            </div>
-        </div>
-
-        <div class="room-card">
-            <div class="card-header">
-                <img src="img/icon.png" alt="icon" class="icon">
-                <h2>Pavillon B</h2>
-            </div>
-            <div class="card-content">
-                <p>Site: INSSA</p>
-                <p>Heure de début: 08h</p>
-                <p>Heure de fin: 12h</p>
-                <button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button>
-            </div>
-        </div>
-
-        <div class="room-card">
-            <div class="card-header">
-                <img src="img/icon.png" alt="icon" class="icon">
-                <h2>Amphi II</h2>
-            </div>
-            <div class="card-content">
-                <p>Site: INSSA</p>
-                <p>Heure de début: 08h</p>
-                <p>Heure de fin: 12h</p>
-                <button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button>
-            </div>
-        </div>
-
-        <div class="room-card">
-            <div class="card-header">
-                <img src="img/icon.png" alt="icon" class="icon">
-                <h2>Bloc pédagogique</h2>
-            </div>
-            <div class="card-content">
-                <p>Site: INSSA</p>
-                <p>Heure de début: 08h</p>
-                <p>Heure de fin: 12h</p>
-                <button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button>
-            </div>
-        </div>
+    <?php
+    if(!isset($_SESSION['connecter'])){
+        echo '<div id="message">';
+        echo '<h3>';
+        echo 'Veuillez vous connecter pour voir vos réservations';
+        echo '</h3>';
+        echo '<p>Cliquez ici : <a href="connexion.php">Se connecter</a></p>';
+        echo '</div>';
+    }
+    else{
+        $preparation = $connexion->prepare("
+        SELECT 
+        salle.id_salle,reservation.id_reservation,salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin,reservation.date_reservation
+        FROM utilisateur
+        INNER JOIN reservation ON reservation.id_reservataire = utilisateur.id_utilisateur
+        INNER JOIN salle ON salle.id_salle = reservation.id_salle
+        WHERE utilisateur.id_utilisateur = :usr_id
+        ORDER BY reservation.date_reservation DESC LIMIT 4");
+        $preparation->bindValue(':usr_id',$_SESSION['id_user'],PDO::PARAM_INT);
+        
+        $preparation->execute();
+        $resultat = $preparation->fetchAll(PDO::FETCH_ASSOC);
+        if($resultat==null){
+            echo '<div id="message">';
+            echo '<h3>';
+            echo "Vous n'avez effectuer aucune réservation pour le moment";
+            echo '</h3>';
+            echo '<p>Cliquez ici pour en faire une : <a href="salles.php">Réserver salle</a></p>';
+            echo '</div>';
+        }
+        else{
+            foreach( $resultat as $colonne){
+                echo '<div class="room-card">';
+                echo '<div class="card-header">';
+                echo '<img src="img/icon.png" alt="icon" class="icon">';
+                echo '<h2>'. htmlspecialchars($colonne['nom_salle']) .'</h2>';
+                echo '</div>';
+                echo '<div class="card-content">';
+                echo '<p>Site: '.  htmlspecialchars($colonne['emplacement']) .'</p>';
+                echo '<p>Heure de début: '. htmlspecialchars($colonne['heure_debut']) .'</p>';
+                echo '<p>Heure de fin: '. htmlspecialchars($colonne['heure_fin']) .'</p>';
+                echo '<button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button>';
+                echo '</div>';
+                echo '</div>';
+            }
+        }
+    }
+    ?>
 
     </div>
     </div>

@@ -80,3 +80,24 @@ CREATE TABLE reservation (
     CONSTRAINT FOREIGN KEY (id_reservataire) REFERENCES utilisateur(id_utilisateur)
     );
 
+SELECT 
+            salle.id_salle,reservation.id_reservation,salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin, reservation.date_reservation 
+            FROM reservation 
+            LEFT JOIN utilisateur ON reservation.id_reservataire=1
+            LEFT JOIN salle ON salle.id_salle=reservation.id_salle  
+ORDER BY `reservation`.`date_reservation` DESC
+
+SELECT 
+    salle.id_salle,
+    reservation.id_reservation,
+    salle.nom_salle,
+    salle.emplacement,
+    reservation.jour_reserver,
+    reservation.heure_debut,
+    reservation.heure_fin,
+    reservation.date_reservation
+FROM utilisateur
+LEFT JOIN reservation ON reservation.id_reservataire = utilisateur.id_utilisateur
+LEFT JOIN salle ON salle.id_salle = reservation.id_salle
+WHERE utilisateur.id_utilisateur = 2
+ORDER BY reservation.date_reservation DESC;

@@ -42,7 +42,7 @@ require_once 'connexion_base_Donnee.php';
     <div class="table-container">
         <?php
             if(!isset($_SESSION['connecter'])){
-                echo '<div id="message_non_connecter">';
+                echo '<div id="message">';
                 echo '<h3>';
                 echo 'Veuillez vous connecter pour voir vos réservations';
                 echo '</h3>';
@@ -51,8 +51,8 @@ require_once 'connexion_base_Donnee.php';
             }
             else{
                 $tableauFetch = getReservation($connexion);
-                if(!$tableauFetch){
-                    echo '<div id="message_non_connecter">';
+                if(!$tableauFetch || $tableauFetch[0]['nom_salle']){
+                    echo '<div id="message">';
                     echo '<h3>';
                     echo "Vous n'avez encore fait aucune réservation";
                     echo '</h3>';

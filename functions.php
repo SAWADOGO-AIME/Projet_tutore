@@ -117,11 +117,14 @@ function seConnecter(PDO &$connexion) : bool{
         try {
             $requete = "
             SELECT 
-            salle.id_salle,reservation.id_reservation,salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin
-            FROM reservation
-            LEFT JOIN utilisateur ON reservation.id_reservataire ={$_SESSION['id_user']}
-            LEFT JOIN salle ON salle.id_salle=reservation.id_salle";
+            salle.id_salle,reservation.id_reservation,salle.nom_salle,salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin,reservation.date_reservation
+            FROM utilisateur
+            INNER JOIN reservation ON reservation.id_reservataire = utilisateur.id_utilisateur
+            INNER JOIN salle ON salle.id_salle = reservation.id_salle
+            WHERE utilisateur.id_utilisateur ={$_SESSION['id_user']}";
+            
             $preparation = $connexion->prepare($requete);
+            // ORDER BY reservation.date_reservation DESC LIMIT 4
             $preparation->execute();
             return $preparation->fetchAll();
         }
