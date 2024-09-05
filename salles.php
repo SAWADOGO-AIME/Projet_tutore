@@ -1,25 +1,9 @@
 <?php
+session_start();
 $tableaufetchsite = null;
 $tableaufetchsalle = null;
-$rechercheSalleActiver = false;
-$rechercheSiteActiver = false;
 require_once 'connexion_base_Donnee.php';
 require_once 'functions.php';
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site']) || isset($_GET['barre_rechercher_salle'])) {
-    try {
-        
-        if (isset($_GET['barre_rechercher_site'])) {
-            $tableaufetchsite = getSites($connexion);
-            $rechercheSiteActiver = true;
-        }
-        if (isset($_GET['barre_rechercher_salle'])) {
-            $tableaufetchsalle = getSalles($connexion);
-            $rechercheSalleActiverteActiver = true;
-        }
-    } catch (Exception $e) {
-        echo 'Erreur : ' . $e->getMessage();
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -62,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                     foreach ($tableaufetchsite as $colonne) {
                         echo '<div class="resultat_individuel">';
                         echo '<h3>';
-                        echo htmlspecialchars($colonne['nom_salle']);
+                        echo htmlspecialchars($colonne['emplacement']);
                         echo '</h3>';
                         echo '<p>';
-                        echo 'Site : <span>' . htmlspecialchars($colonne['emplacement']) . '</span> <br>';
+                        echo 'Nom de la salle : <span>' . htmlspecialchars($colonne['nom_salle']) . '</span> <br>';
                         echo 'Etat : <span>' . htmlspecialchars($colonne['salle_disponible']) . '</span> <br>';
                         echo 'Nombre de places : <span>' . htmlspecialchars($colonne['nombre_places']) . '</span> <br>';
                         echo '<div id="bouton">';
