@@ -4,6 +4,7 @@ session_start();
 <?php
     require_once 'connexion_base_Donnee.php';
     require_once 'functions.php';
+    
     try {
         $resultat_req = $connexion->query('SELECT * FROM salle LIMIT 5');
     } catch (Exception $e) {
@@ -39,7 +40,12 @@ session_start();
     <!--page design-->
     <div class="batiment">
         <div class="text">
-            <h1>Bienvenue sur la plateforme</h1>
+            <?php
+            if (isset($_SESSION['connecter']))
+                echo "<h1>Bienvenue Mr/Mme ". $_SESSION['nom_user'] ."<br> sur votre plateforme de </h1>";
+            else
+                echo "<h1>Bienvenue sur la plateforme</h1>";
+            ?>
             <h2>Gestion des salles dans UNB</h2>
             <div class="search">
                 <p>Vous recherchez une salle ?</p>
@@ -85,7 +91,7 @@ session_start();
 
     <!-- Ce bloc s'affiche uniquement si on est connecter -->
     <div class="si_connecter">
-    <h1>Vos 4 dernière réservations</h1>
+    <h1>Vos dernières réservations</h1>
     <div class="grid-container">
     <?php
     if(!isset($_SESSION['connecter'])){
@@ -128,13 +134,15 @@ session_start();
                 echo '<p>Site: '.  htmlspecialchars($colonne['emplacement']) .'</p>';
                 echo '<p>Heure de début: '. htmlspecialchars($colonne['heure_debut']) .'</p>';
                 echo '<p>Heure de fin: '. htmlspecialchars($colonne['heure_fin']) .'</p>';
-                echo '<button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button>';
+                // echo '<a><button class="liberate-button"><img src="img/cross.png" alt="Croix blanche"> Libérer</button></a>';
+                echo "<a href=\"liberer_salle.php?Salle_a_Liberer=" .htmlspecialchars($colonne['id_reservation']). "\"><button class='liberate-button'><img src='img/cross.png' alt='Croix blanche'> Libérer</button></a>";
                 echo '</div>';
                 echo '</div>';
             }
         }
     }
     ?>
+    <!-- <button class="details"><a href="details.php?SalleNumero=<?=$row['id_salle']?>"><img src="img/detail.png" alt="icone_detail"> Détails</a></button> -->
 
     </div>
     </div>

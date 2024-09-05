@@ -151,6 +151,7 @@ function seConnecter(PDO &$connexion) : bool{
             echo 'Erreur : '.$e->getMessage();
         }
     }
+    
     function toheaven($something){
         echo '<pre>';
         print_r( $something );
