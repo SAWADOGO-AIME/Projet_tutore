@@ -64,9 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                         echo '<h3>';
                         echo htmlspecialchars($colonne['nom_salle']);
                         echo '</h3>';
+                        echo '<p>';
                         echo 'Site : <span>' . htmlspecialchars($colonne['emplacement']) . '</span> <br>';
                         echo 'Etat : <span>' . htmlspecialchars($colonne['salle_disponible']) . '</span> <br>';
-                        echo '<p>';
                         echo 'Nombre de places : <span>' . htmlspecialchars($colonne['nombre_places']) . '</span> <br>';
                         echo '<div id="bouton">';
                         echo '<a href="#"><button>Réserver</button></a>';
@@ -127,9 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['barre_rechercher_site'])
                         echo '<h3>';
                         echo htmlspecialchars($colonne['nom_salle']);
                         echo '</h3>';
+                        echo '<p>';
                         echo 'Site : <span>' . htmlspecialchars($colonne['emplacement']) . '</span> <br>';
                         echo 'Etat : <span>' . htmlspecialchars($colonne['salle_disponible']) . '</span> <br>';
-                        echo '<p>';
                         echo 'Nombre de places : <span>' . htmlspecialchars($colonne['nombre_places']) . '</span> <br>';
                         echo '<div id="bouton">';
                         echo '<a href="#"><button>Réserver</button></a>';
