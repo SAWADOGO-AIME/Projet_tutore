@@ -26,7 +26,7 @@
             <a href="tel:+22664584277" target="_blank">
                 <i class="fa fa-phone fa-2x"></i>
             </a>
-            <a href="mailto:01BP1091@bobo-dioulasso.com" target="_blank">
+            <a href="mailto:upb@bf.edu" target="_blank">
                 <i class="fas fa-envelope fa-2x"></i>
             </a>
         </div>
