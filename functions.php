@@ -134,21 +134,45 @@ function seConnecter(PDO &$connexion) : bool{
     }
     function reserverSalle(PDO &$connexion){
         try {
-            $preparation = $connexion->prepare("
+            $preparation_Verification_Aucun_Conflit = $connexion->prepare("
+                SELECT * FROM reservation 
+                WHERE 
+                reservation.id_salle=:salle_id AND reservation.jour_reserver=:jr_reserver
+                AND reservation.id_reservataire=:usr_id
+                AND
+                ((reservation.heure_debut<:h_fin AND reservation.heure_fin>:h_deb) OR(reservation.heure_debut>:h_deb AND reservation.heure_debut<:h_fin));
+            ");
+            $preparation_Verification_Aucun_Conflit->bindValue(':usr_id',$_SESSION['id_user'],PDO::PARAM_INT);
+            $preparation_Verification_Aucun_Conflit->bindValue(':jr_reserver',$_POST['jour_reserver']);
+            $preparation_Verification_Aucun_Conflit->bindValue(':h_deb',$_POST['heure_debut']);
+            $preparation_Verification_Aucun_Conflit->bindValue(':h_fin',$_POST['heure_fin']);
+            $preparation_Verification_Aucun_Conflit->bindValue(':salle_id',$_SESSION['id_SalleReservationEnCours'],PDO::PARAM_INT);
+            $preparation_Verification_Aucun_Conflit->execute();
+            $resultConflictuelle = $preparation_Verification_Aucun_Conflit->fetch(PDO::FETCH_ASSOC);
+            toheaven($GLOBALS);
+            toheaven($resultConflictuelle);
+            if (!$resultConflictuelle){
+                echo "RECEIN : ". $resultConflictuelle;
+                $preparation = $connexion->prepare("
                 INSERT INTO `reservation` 
                 (id_salle,id_reservataire,jour_reserver,heure_debut,heure_fin,date_reservation)
                 VALUES ( :salle_id, :usr_id, :jr_reserver, :h_deb,:h_fin, :heureDeReservation)
-            ");
-            $preparation->bindValue(':salle_id',$_SESSION['id_SalleReservationEnCours'],PDO::PARAM_INT);
-            $preparation->bindValue(':usr_id',$_SESSION['id_user'],PDO::PARAM_INT);
-            $preparation->bindValue(':jr_reserver',$_POST['jour_reserver']);
-            $preparation->bindValue(':h_deb',$_POST['heure_debut']);
-            $preparation->bindValue(':h_fin',$_POST['heure_fin']);
-            $timeStampActuelle = date('Y-m-d H:i:s', time());
-            $preparation->bindValue(':heureDeReservation',$timeStampActuelle);
-            $preparation->execute();
+                ");
+                $preparation->bindValue(':salle_id',$_SESSION['id_SalleReservationEnCours'],PDO::PARAM_INT);
+                $preparation->bindValue(':usr_id',$_SESSION['id_user'],PDO::PARAM_INT);
+                $preparation->bindValue(':jr_reserver',$_POST['jour_reserver']);
+                $preparation->bindValue(':h_deb',$_POST['heure_debut']);
+                $preparation->bindValue(':h_fin',$_POST['heure_fin']);
+                $timeStampActuelle = date('Y-m-d H:i:s', time());
+                $preparation->bindValue(':heureDeReservation',$timeStampActuelle);
+                $preparation->execute();
+                return true;
+            }
+            else
+                return false;
         } catch ( PDOException $e ) {
             echo 'Erreur : '.$e->getMessage();
+            return false;
         }
     }
     

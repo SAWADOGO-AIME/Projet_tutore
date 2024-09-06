@@ -30,6 +30,12 @@
         {
             if(reserverSalle($connexion)){
                 $reservationEffectuer = true;
+                echo "<script>alert('Réservation réussie')</script>";
+                header("Location: reservation.php");
+                exit;
+            }
+            else{
+                echo "<script>alert('Echec de la reservation : Crénau déjà pris !')</script>";
             }
         }
 }

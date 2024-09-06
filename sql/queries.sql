@@ -102,6 +102,11 @@ LEFT JOIN salle ON salle.id_salle = reservation.id_salle
 WHERE utilisateur.id_utilisateur = 2
 ORDER BY reservation.date_reservation DESC;
 
-title: "Résever",
-start: '<?htmlspecialchars()?>T<?htmlspecialchars($colonne['heure_debut'])?>',
-end: '<?htmlspecialchars($colonne['jour_reserver'])?>T<?htmlspecialchars($colonne['heure_fin'])?>',
+
+SELECT * FROM reservation 
+WHERE reservation.jour_reserver='2024-09-05' AND (reservation.heure_debut<'15:00' AND reservation.heure_fin>'17:00') ;
+
+SELECT * FROM reservation 
+WHERE reservation.jour_reserver='2024-09-05' AND ((reservation.heure_debut<'15:00' AND reservation.heure_fin>'09:00') 
+                                                  OR(reservation.heure_debut>'09:00' AND reservation.heure_debut<'15:00'));
+                                            
