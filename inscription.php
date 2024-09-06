@@ -1,15 +1,14 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] =='POST') {
-    $motdepassediff = false;
     try{
         require_once 'connexion_base_Donnee.php';
         require_once 'functions.php';
         if(sInscrire($connexion)){
             header('Location: index.php');
         }
-        // else{
-        //     $motdepassediff = true;
-        // }
+        else{
+            echo "<script>alert('Mot de passe different !')</script>";
+        }
     }
     catch(Exception $e){
         echo 'Erreur : '. $e->getMessage();
@@ -77,13 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
                         <option value="CENTRE DE CALCUL">CENTRE DE CALCUL</option>
                     </select>
                 </div>
-                <?php
-                if ($motdepassediff){
-                    echo '<div class="titre">
-                    <p>Mot de passe non identique</p>
-                    </div>';
-                }
-                ?>
                 <div id='bouton_inscription'>
                     <input type="submit" value="S'inscrire">
                 </div>
