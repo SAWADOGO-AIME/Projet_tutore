@@ -20,7 +20,7 @@ CREATE TABLE utilisateur(
     id_utilisateur INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nom_utilisateur VARCHAR(30) NOT NULL ,
     prenom_utilisateur VARCHAR(50) NOT NULL ,
-    motdepasse_utilisateur VARCHAR(25) NOT NULL ,
+    motdepasse_utilisateur VARCHAR(64) NOT NULL ,
     email_utilisateur VARCHAR(50) UNIQUE NOT NULL,
     etablissement_utilisateur ENUM('SITE DU 22','INSSA','CENTRE DE CALCUL') NOT NULL
     );
@@ -37,8 +37,8 @@ CREATE TABLE reservation (
     heure_debut TIME NOT NULL,
     heure_fin TIME NOT NULL,
     date_reservation TIMESTAMP,
-    CONSTRAINT FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
-    CONSTRAINT FOREIGN KEY (id_reservataire) REFERENCES utilisateur(id_utilisateur)
+    CONSTRAINT FOREIGN KEY (id_salle) REFERENCES salle(id_salle) ON DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (id_reservataire) REFERENCES utilisateur(id_utilisateur) ON DELETE CASCADE
     );
 INSERT INTO `reservation` (`id_reservation`, `id_salle`, `id_reservataire`, `jour_reserver`, `heure_debut`, `heure_fin`, `date_reservation`) VALUES (NULL, '2', '1', '2024-09-05', '22:39:00', '23:47:15', NULL)
 
