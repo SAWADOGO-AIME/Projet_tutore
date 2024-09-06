@@ -138,19 +138,15 @@ function seConnecter(PDO &$connexion) : bool{
                 SELECT * FROM reservation 
                 WHERE 
                 reservation.id_salle=:salle_id AND reservation.jour_reserver=:jr_reserver
-                AND reservation.id_reservataire=:usr_id
                 AND
                 ((reservation.heure_debut<:h_fin AND reservation.heure_fin>:h_deb) OR(reservation.heure_debut>:h_deb AND reservation.heure_debut<:h_fin));
             ");
-            $preparation_Verification_Aucun_Conflit->bindValue(':usr_id',$_SESSION['id_user'],PDO::PARAM_INT);
             $preparation_Verification_Aucun_Conflit->bindValue(':jr_reserver',$_POST['jour_reserver']);
             $preparation_Verification_Aucun_Conflit->bindValue(':h_deb',$_POST['heure_debut']);
             $preparation_Verification_Aucun_Conflit->bindValue(':h_fin',$_POST['heure_fin']);
             $preparation_Verification_Aucun_Conflit->bindValue(':salle_id',$_SESSION['id_SalleReservationEnCours'],PDO::PARAM_INT);
             $preparation_Verification_Aucun_Conflit->execute();
             $resultConflictuelle = $preparation_Verification_Aucun_Conflit->fetch(PDO::FETCH_ASSOC);
-            toheaven($GLOBALS);
-            toheaven($resultConflictuelle);
             if (!$resultConflictuelle){
                 echo "RECEIN : ". $resultConflictuelle;
                 $preparation = $connexion->prepare("
