@@ -139,7 +139,7 @@ function seConnecter(PDO &$connexion) : bool{
                 WHERE 
                 reservation.id_salle=:salle_id AND reservation.jour_reserver=:jr_reserver
                 AND
-                ((reservation.heure_debut<:h_fin AND reservation.heure_fin>:h_deb) OR(reservation.heure_debut>:h_deb AND reservation.heure_debut<:h_fin));
+                ((reservation.heure_debut<=:h_fin AND reservation.heure_fin>=:h_deb) OR(reservation.heure_debut>=:h_deb AND reservation.heure_debut<=:h_fin));
             ");
             $preparation_Verification_Aucun_Conflit->bindValue(':jr_reserver',$_POST['jour_reserver']);
             $preparation_Verification_Aucun_Conflit->bindValue(':h_deb',$_POST['heure_debut']);

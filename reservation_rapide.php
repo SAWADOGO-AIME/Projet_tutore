@@ -15,7 +15,6 @@
                 header('Location: connexion.php');
                 exit;
             }
-
             if(!isset($_SESSION['id_SalleReservationEnCours']))
                 $_SESSION['id_SalleReservationEnCours']= $_GET['SalleNumero'];
         
