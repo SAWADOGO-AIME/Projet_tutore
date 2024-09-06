@@ -442,6 +442,9 @@ h3{
     color: #0077b5;
     margin-bottom: 10px;
 }
+.info-box a {
+    text-decoration: none;
+}
 
 .info-box h4 {
     color: black;
