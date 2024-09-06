@@ -33,8 +33,10 @@ session_start();
     <!-- SearchBar Section -->
     <div class="SearchBar">
         <!-- Search Site -->
-        <input class="SearchInputSite" type="text" placeholder="Rechercher ...">
-        <button class="searchButtonSite"><img src="img/loupe.png" alt="Search"></button>
+         <form action="salles.php" method="GET">
+            <input type="text" class="SearchInputSite" name="barre_rechercher_salle" id="barre_rechercher_site" placeholder="Rechercher ...">
+            <button class="searchButtonSite" type="submit"><img src="img/loupe.png" alt="Search"></button>
+        </form>
         
         </div>
     <!--page design-->

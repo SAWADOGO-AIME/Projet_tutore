@@ -188,6 +188,7 @@ h3{
 /* .room-card.active { */
 .room-card:hover {
     border-left: 5px solid #4CAF50;
+    transition: border-left 0.5s;
 }
 
 .room-card .card-header {
