@@ -2,6 +2,12 @@
 session_start();
 require_once 'functions.php';
 require_once 'connexion_base_Donnee.php';
+if (isset($_GET['barre_rechercher_site'])) {
+
+}
+else if(isset($_GET['barre_rechercher_salle'])) {
+
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,13 +33,13 @@ require_once 'connexion_base_Donnee.php';
     <div class="SearchBar">
         <!-- Search Site -->
         <form action="reservation.php" method="GET">
-            <input type="text" placeholder="Rechercher site">
+            <input type="text" name="barre_rechercher_site" id="barre_rechercher_site" placeholder="Rechercher site">
             <button type="submit" class="searchButtonSite"><img src="img/loupe_black.png" alt="Search"></button>
         </form>
         <!-- Search Salle -->
         <!-- <p>👈🏿---------👉🏿</p> -->
         <form action="reservation.php" method="GET">
-            <input type="text" placeholder="Rechercher salle">
+            <input type="text" name="barre_rechercher_salle" id="barre_rechercher_salle" placeholder="Rechercher salle">
             <button type="submit" class="searchButtonSalle"><img src="img/loupe_black.png" alt="Search"></button>
         </form>
     </div>
@@ -60,6 +66,15 @@ require_once 'connexion_base_Donnee.php';
                     echo '</div>';
                 }
                 else{
+                    // $preparation = $connexion->prepare('SELECT * FROM salle ORDER BY emplacement');
+
+                    if (isset($_GET['barre_rechercher_salle'])) {
+                        $tableauFetch= getReservationbySalles($connexion);
+                    }
+                    else if (isset($_GET['barre_rechercher_site'])) {
+                        $tableauFetch= getReservationbySites($connexion);
+                    }
+                    if($tableauFetch<>null){
                     echo "<table>";
                     echo "<thead>";
                     echo "<tr>";
@@ -100,6 +115,15 @@ require_once 'connexion_base_Donnee.php';
                     }
                     echo "</tbody>";
                     echo "</table>";
+                    }
+                    else{
+                        echo '<div id="message">';
+                        echo '<h3>';
+                        echo "Aucun résultat trouver";
+                        // echo '</h3>';
+                        // echo '<p>Cliquez ici pour en faire une : <a href="salles.php">Voir salles</a></p>';
+                        echo '</div>';
+                    }
                 }
             }
         ?>

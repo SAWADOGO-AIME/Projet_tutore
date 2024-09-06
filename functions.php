@@ -113,6 +113,40 @@ function seConnecter(PDO &$connexion) : bool{
         }
     }
 
+    function getReservationbySalles(PDO & $connexion) {
+        try {
+            $entree = $_GET['barre_rechercher_salle'];
+            $entree = filter_var($entree, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $requete = "SELECT salle.id_salle, reservation.id_reservation ,salle.nom_salle, salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin
+                        FROM reservation 
+                        INNER JOIN salle ON salle.id_salle=reservation.id_salle
+                        WHERE reservation.id_reservataire=". $_SESSION['id_user'] ." AND salle.nom_salle LIKE '%".$entree."%'";
+            $preparation = $connexion->prepare($requete);
+            $preparation->execute();
+            return $preparation->fetchAll();
+        } catch ( PDOException $e ) {
+            echo "getReservationbySalles ".$e->getMessage();
+            return false;
+        }
+    }
+    function getReservationbySites(PDO & $connexion) {   
+        try {
+            $entree = $_GET['barre_rechercher_site'];
+            $entree = filter_var($entree, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $requete = "
+                    SELECT salle.id_salle, reservation.id_reservation ,salle.nom_salle, salle.emplacement,reservation.jour_reserver,reservation.heure_debut,reservation.heure_fin
+                    FROM reservation 
+                    INNER JOIN salle ON salle.id_salle=reservation.id_salle
+                    WHERE reservation.id_reservataire=". $_SESSION['id_user'] ." AND salle.emplacement LIKE '%".$entree."%'";
+            $preparation = $connexion->prepare($requete);
+            $preparation->execute();
+            return $preparation->fetchAll();
+            } catch ( Exception $e ) {
+                echo 'getReservationbySites '.$e->getMessage().$e->getLine();
+                return false;
+            }
+        }
+
     function getReservation(PDO & $connexion){
         try {
             $requete = "
