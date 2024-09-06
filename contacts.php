@@ -24,7 +24,7 @@
                 <i class="fab fa-facebook fa-2x"></i>
             </a>
             <a href="tel:+22664584277" target="_blank">
-                <i class="fa fa-phone" afa-2></i>
+                <i class="fa fa-phone fa-2x"></i>
             </a>
             <a href="mailto:01BP1091@bobo-dioulasso.com" target="_blank">
                 <i class="fas fa-envelope fa-2x"></i>
