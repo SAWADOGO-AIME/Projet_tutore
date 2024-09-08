@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] =='POST' && isset($_POST['email']) && isset($_POS
         {
             header('Location: index.php');
         }
+        else{
+            $erreurdeconnexion = true;
+        }
     }catch(Exception $e){
         echo'Erreur : '. $e->getMessage();
     }
@@ -43,10 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] =='POST' && isset($_POST['email']) && isset($_POS
 
             <button type="submit">Connexion</button>
         </form>
+        <?php
+            if (isset($erreurdeconnexion)){
+                echo "Mot de passe ou nom d'utilisateur incorrect";
+                echo "<script>
+                document.getElementById(\"email\").style.borderColor = \"red\";
+                </script>";
+                }
+        ?>
         <a href="#" class="forgot-password">Mot de passe oublié?</a>
         <p class="signup-text">Pas encore de compte? <a href="inscription.php" class="signup-link">S'inscrire</a></p>
     </div>
 
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleMenuButton = document.getElementById('toggleButton');
