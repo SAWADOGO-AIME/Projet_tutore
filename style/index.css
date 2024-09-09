@@ -453,6 +453,8 @@ h3{
     margin-top: 10px;
 }
 
+
+
 /*THE RESPONSIVE PARTY*/
 @media only screen and (max-width: 600px) {
     /*SEARCH BAR*/
@@ -519,6 +521,43 @@ h3{
     max-width: none; 
     padding: 10px; 
 }
+
+
+/* Actualités Section */
+.card-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto; 
+    gap: 10px; 
+}
+
+.grande-card, .petite-card {
+    grid-column: span 1; 
+    grid-row: auto;
+    padding: 10px; 
+}
+
+.card img {
+    max-width: 100%; 
+}
+
+.card p {
+    font-size: 0.9rem; 
+}
+
+
+h2, h3, h4 {
+    font-size: 1.2rem; 
+}
+
+p, .card p {
+    font-size: 0.9rem; 
+}
+
+.all-news-button {
+    padding: 6px 12px; 
+    font-size: 0.8rem; 
+}
+
 
 
 }
