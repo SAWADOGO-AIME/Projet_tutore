@@ -455,25 +455,70 @@ h3{
 
 /*THE RESPONSIVE PARTY*/
 @media only screen and (max-width: 600px) {
-    
+    /*SEARCH BAR*/
     .SearchBar {
         display: flex;
         align-items: center; 
         justify-content: flex-start; 
         padding-left: 5px;
-        width: 100%; 
+        width: 100%; }
 
-    
     .SearchInputSite {
         padding-left: 5px;
         padding-right: 5px;
         width: 160px; 
     }
 
-   
+
     .searchButtonSite img {
         height: 24px;
         width: 20px;
-        margin-left: 5px; 
+        margin-left: 5px;
     }
+
+    /*THE NEWS PARTY*/
+    /* Newsletter Section */
+.newsletter-container {
+    flex-direction: column; 
+    text-align: center;
+    padding: 10px;
+}
+
+.newsletter-content img {
+    max-width: 80px; 
+    margin: 0 auto 10px; 
+}
+
+.newsletter-form {
+    flex-direction: column; 
+}
+
+.newsletter-form input {
+    margin-bottom: 8px; 
+    width: 100%;
+    font-size: 1rem; 
+}
+
+.newsletter-form button {
+    width: 100%;
+    font-size: 0.9rem; 
+    padding: 8px; 
+}
+
+/* Info Section */
+.info-section {
+    padding: 20px 10px;
+}
+
+.info-boxes {
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+.info-box {
+    max-width: none; 
+    padding: 10px; 
+}
+
+
 }
