@@ -1,0 +1,79 @@
+/*footer*/
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    font-family: 'Lexend', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h4 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #FFD700; /* Or change to your brand color */
+}
+
+.footer-section p,
+.footer-section ul,
+.footer-section li {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a , .footer-section a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover , .footer-section a{
+    color: #FFD700; /* Or change to your brand color */
+}
+
+.social-icons a {
+    color: white;
+    margin-right: 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #FFD700; /* Or change to your brand color */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    font-size: 1rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+/* Icônes des réseaux sociaux */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* Assurez-vous que les icônes s'affichent correctement */
+/* .social-icons i { */
+    /* Ajoutez des styles si nécessaire */
+/* } */
