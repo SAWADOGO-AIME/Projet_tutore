@@ -1,0 +1,137 @@
+/* Styles généraux */
+body {
+    font-family: roboto;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+}
+
+header .logo img {
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+}
+
+.nav {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.nav .menu {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.nav .menu li {
+    margin-right: 20px;
+}
+
+.nav .menu li a , .ConnexionButton  a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: sansita;
+}
+.connexion button{
+    width: 100%;
+}
+.connexion .ConnexionButton {
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.connexion .ConnexionButton a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.connexion .ConnexionButton:hover {
+    background-color: #ddd;
+}
+
+
+/*Toggle Menu (pour petits écrans) */
+.toggle_menu {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.toggle_menu div {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+}
+
+/* Responsive Menu */
+@media (max-width: 768px) {
+    .toggle_menu {
+        display: block;
+    }
+    .nav ul {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color:#4CAF50;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        flex-direction: column;
+        width: 150px;
+    }
+    .nav ul.active {
+        display: flex;
+    }
+    .nav ul li {
+        width: 100%;
+        text-align: left;
+    }
+    .nav ul li a {
+        color: #333;
+        padding: 10px 20px;
+        display: block;
+    }
+    .nav ul li a:hover {
+        background-color: #FFD700;
+        color: #333;
+    }
+}
+
+@font-face {
+    font-family: roboto;
+    src: url('../fonts/Roboto/Roboto-Regular.ttf');
+}
+@font-face {
+    font-family: sansita;
+    src: url('../fonts/Sansita/Sansita-Regular.ttf');
+}
+@font-face {
+    font-family: lobster;
+    src: url('../fonts/Lobster/Lobster-Regular.ttf');
+}
+@font-face {
+    font-family: cookie;
+    src: url('../fonts/Cookie/Cookie-Regular.ttf');
+}
+@font-face {
+    font-family: nerko;
+    src: url('../fonts/Nerko_One/NerkoOne-Regular.ttf');
+}
