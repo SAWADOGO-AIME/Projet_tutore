@@ -108,7 +108,7 @@ form img{
     }
 
     #bouton a {
-        width: 90%;
+        width: 80%;
     }
 
     #bouton a button {
@@ -116,20 +116,41 @@ form img{
     }
 }
 
+/* For screens smaller than 780px */
 @media only screen and (max-width: 780px) {
-    .resultat_individuel h3 {
-        font-size: 1.6rem; 
+    #div_corps_page {
+        grid-template-columns: 1fr; 
     }
 
-    .resultat_individuel p {
-        font-size: 1.4rem; 
+    #rechercher_salle, #rechercher_site {
+        width: 100%; 
+        margin: 0; 
     }
 
-    .resultat_individuel span {
-        font-size: 0.9rem; 
+    #rechercher_salle {
+        border-left: none; 
     }
 
-    #bouton a button {
-        font-size: 1rem; 
+    .champ_rechercher {
+        margin-bottom: 20px; 
+    }
+
+    .resultat_individuel {
+        width: 100%; 
+        margin: 10px auto; 
+        padding-bottom: 50px;
+    }
+    #bouton a {
+        width: 100%; 
+    }
+    #bouton {
+        grid-template-columns: 1fr; 
+    }
+
+    #bouton a{
+        width: 60%;
+        margin: 0px auto;
+        text-align: center;
+        
     }
 }

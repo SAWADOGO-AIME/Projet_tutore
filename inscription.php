@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
             navMenu.classList.toggle("active");
         });
     });
-    
+
     </script>
     <?php
     require_once 'footer.php';
