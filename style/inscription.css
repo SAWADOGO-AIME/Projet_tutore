@@ -84,3 +84,44 @@ input[type='submit']{
     font-family: sansita;
     color: #E1C675;
 }
+
+/* Responsive pour les petits écrans */
+@media only screen and (max-width: 800px) { 
+    #div_central {
+        height: 1900px; 
+        width: 90%; 
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    #zone_deja_inscrit p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+/* Très petits écrans (-480px) */
+@media only screen and (max-width: 480px) {
+    #div_central {
+        height: 1000px; 
+        width: 95%; 
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    input[type='submit'] {
+        font-size: 1.2rem;
+        padding: 8px;
+    }
+
+    #zone_deja_inscrit p {
+        font-size: 0.8rem;
+    }
+}
+
