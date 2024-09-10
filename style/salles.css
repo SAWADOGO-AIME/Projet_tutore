@@ -90,3 +90,46 @@ form img{
     background-color: rgb(122, 122, 230);
     transition: background-color 0.5s;
 }
+
+
+
+/*salles' Responsive Styles */
+@media only screen and (max-width: 1200px) {
+    #div_corps_page {
+        flex-direction: column; 
+    }
+
+    #rechercher_salle, #rechercher_site {
+        margin: 10px; 
+    }
+
+    .resultat_individuel {
+        width: 100%;
+    }
+
+    #bouton a {
+        width: 90%;
+    }
+
+    #bouton a button {
+        font-size: 1.2rem; 
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .resultat_individuel h3 {
+        font-size: 1.6rem; 
+    }
+
+    .resultat_individuel p {
+        font-size: 1.4rem; 
+    }
+
+    .resultat_individuel span {
+        font-size: 0.9rem; 
+    }
+
+    #bouton a button {
+        font-size: 1rem; 
+    }
+}
