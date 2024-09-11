@@ -85,25 +85,20 @@ input[type='submit']{
     color: #E1C675;
 }
 
-/* Responsive pour les petits écrans */
+/* Responsive for smaller screens */
 @media only screen and (max-width: 800px) { 
     #div_central {
         height: 1900px; 
         width: 90%; 
-    }
-
-    h1 {
-        font-size: 2.5rem;
+        padding: 20px; 
     }
 
     #zone_deja_inscrit p {
         font-size: 0.9rem;
-        margin-bottom: 20px;
-        padding-bottom: 50px;
-    }
+}
 }
 
-/* Très petits écrans (-480px) */
+/* Extra small screens (-480px) */
 @media only screen and (max-width: 480px) {
     #div_central {
         height: 1000px; 
@@ -120,8 +115,12 @@ input[type='submit']{
         padding: 8px;
     }
 
+    #zone_deja_inscrit {
+        position: absolute;
+        bottom: 10px;
+    }
+
     #zone_deja_inscrit p {
         font-size: 0.8rem;
     }
 }
-
