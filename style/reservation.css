@@ -118,3 +118,97 @@ tbody td a button:hover{
     color: #FFD700;
     transition: color 0.5s;
 }
+
+/* Media query for small screens */
+@media only screen and (max-width: 768px) {
+    .SearchBar {
+        grid-template-columns: 1fr; /*we want to stack search bars vertically on small screens */
+    }
+
+    form input {
+        width: 80%; 
+    }
+
+    form button {
+        margin-left: 0;
+        width: 10%; 
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    table th, table td {
+        padding: 8px; 
+        font-size: 1rem;
+    }
+
+    table th {
+        font-size: 1.2rem; /* Slightly smaller header text */
+    }
+
+    tbody td a button {
+        width: 100%; /* Buttons inside the table are full width */
+        margin: 5px 0;
+    }
+
+    #message {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* for the screens minus 480px*/
+@media only screen and (max-width: 480px) {
+    .SearchBar {
+        grid-template-columns: 1fr; 
+        padding: 10px;
+    }
+
+    form input {
+        width: 80%; 
+        font-size: 0.9rem; 
+    }
+
+    form button {
+        width: 10%; 
+        font-size: 0.9rem; /* Reduce button font size */
+        padding: 8px; /* Reduce padding */
+    }
+
+    .table-container {
+        padding: 5px; 
+    }
+
+    table th, table td {
+        padding: 5px; /* Smaller padding for table cells */
+        font-size: 0.8rem; 
+    }
+
+    table th {
+        font-size: 1rem; 
+    }
+
+    tbody td a button {
+        width: 100%; 
+        font-size: 0.9rem; 
+        margin: 2px 0; 
+        padding: 6px; /* Reduce padding for buttons cheks*/
+    }
+
+    #message {
+        width: 95%; 
+        padding: 10px; 
+        font-size: 0.9rem; 
+    }
+    #message h3 {
+        font-size: 1.6rem; 
+    }
+    #message p {
+        font-size: 1.1rem; 
+    }
+
+    #message p a {
+        font-size: 1.2rem; 
+    }
+}
